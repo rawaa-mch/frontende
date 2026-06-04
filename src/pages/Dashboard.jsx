@@ -290,7 +290,28 @@ function Dashboard() {
         </div>
       </div>
 
-      {importMessage && (
+      {importing && (
+        <div
+          className="d-flex justify-content-center align-items-center"
+          style={{
+            position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+            backgroundColor: 'rgba(0,0,0,0.45)', zIndex: 9999,
+          }}
+        >
+          <div
+            className="bg-white rounded-4 shadow-lg text-center p-5"
+            style={{ maxWidth: 360 }}
+          >
+            <Spinner animation="border" variant="primary" style={{ width: '3rem', height: '3rem' }} />
+            <p className="mt-3 mb-0 fw-600" style={{ color: 'var(--ofppt-blue)' }}>
+              Importation en cours…
+            </p>
+            <p className="text-muted small mt-1 mb-0">Veuillez patienter</p>
+          </div>
+        </div>
+      )}
+
+      {importMessage && !importing && (
         <Alert
           variant={importMessage.type}
           onClose={() => setImportMessage(null)}
